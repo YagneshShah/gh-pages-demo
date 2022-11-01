@@ -17,6 +17,6 @@ jobs:
       - name: create index.html
         run: |
           sudo apt install tree
-          tree -H '.' -L 3 -r --noreport --charset utf-8 -P "*.html" -o ./pqd/index.html | sed -e '/<hr>/,+7d' > ./pqd/index.html
+          tree -H '.' -L 3 -r --noreport --charset utf-8 -P "*.html" -o ./index.html | sed -e '/<hr>/,+7d' > ./index.html
           ls -l
           
