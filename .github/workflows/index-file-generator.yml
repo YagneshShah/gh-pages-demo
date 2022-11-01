@@ -1,23 +1,23 @@
 name: create index.html
-on:
-  workflow_dispatch:
+#on:
+  #workflow_dispatch:
     #This trigger helps show the "Run Workflow" button under the github actions page. Hence enabling to trigger workflow manually.
     #reference guide: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_dispatchinputs
-  push:
-    branches:
-      - main
-  deployment:
+  #push:
+    #branches:
+      #- main
+  #deployment:
     #https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#deployment
 
-jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+#jobs:
+  #cypress-run:
+    #runs-on: ubuntu-latest
+    #steps:
+      #- name: Checkout
+        #uses: actions/checkout@v2
 
-      - name: create index.html
-        run: |
+      #- name: create index.html
+        #run: |
           sudo apt install tree
           pwd
           ls -l
