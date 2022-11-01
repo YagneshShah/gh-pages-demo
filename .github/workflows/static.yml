@@ -1,13 +1,15 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Create Index.html + Deploy static content to Pages
 
 on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
+  #https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#deployment
+  deployment:
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -21,8 +23,37 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  generate-indexdothtml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: create index.html and commit to the main branch
+        run: |
+          sudo apt install tree
+          pwd
+          echo 'creating index.html file...'
+          tree -H '.' -L 3 -r --noreport --charset utf-8 -P "*.html" -o ./index.html | sed -e '/<hr>/,+7d' > ./index.html
+          
+          git config --global user.name 'Index generator'
+          git config --global user.email 'yagneshshah@users.noreply.github.com'
+          git add ./index.html
+          git commit -am "Automatically generated index.html file"
+          git push
+          
+      #- name: commit index.html file
+        #uses: EndBug/add-and-commit@v9.1.1
+        #with:
+          # The arguments for the `git add` command (see the paragraph below for more info)
+          # Default: '.'
+          #author_name: 'commit by GH Action index-file-generator'
+          #message: 'commit 1'
+
+          
   # Single deploy job since we're just deploying
-  deploy:
+  deploy-gh-pages:
+    needs: generate-indexdothtml
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
