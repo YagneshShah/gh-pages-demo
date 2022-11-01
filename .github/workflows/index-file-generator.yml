@@ -22,6 +22,9 @@ jobs:
           echo 'creating index.html file...'
           tree -H '.' -L 3 -r --noreport --charset utf-8 -P "*.html" -o ./index.html | sed -e '/<hr>/,+7d' > ./index.html
           ls -l
+          
+          git config --global user.name 'Index generator'
+          git config --global user.email 'yagneshshah@users.noreply.github.com'
           git add ./index.html
           git commit -am "Automatically generated index.html file"
           git push
