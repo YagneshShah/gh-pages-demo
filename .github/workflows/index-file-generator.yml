@@ -22,4 +22,16 @@ jobs:
           echo 'creating index.html file...'
           tree -H '.' -L 3 -r --noreport --charset utf-8 -P "*.html" -o ./index.html | sed -e '/<hr>/,+7d' > ./index.html
           ls -l
+          git add ./index.html
+          git commit -am "Automatically generated index.html file"
+          git push
+          
+      #- name: commit index.html file
+        #uses: EndBug/add-and-commit@v9.1.1
+        #with:
+          # The arguments for the `git add` command (see the paragraph below for more info)
+          # Default: '.'
+          #author_name: 'commit by GH Action index-file-generator'
+          #message: 'commit 1'
+
           
