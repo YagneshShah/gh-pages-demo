@@ -1,8 +1,12 @@
 {
   "routes": [
     {
-      "route": "/*",
+      "route": "/login",
       "rewrite": "/.auth/login/aad"
+    },
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
     }
   ],
   "responseOverrides": {
