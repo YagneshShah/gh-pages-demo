@@ -30,7 +30,7 @@ jobs:
           pwd
           ls -l
           echo 'creating index.html file...'
-          tree -H '.' -L 3 -C -r --noreport --charset utf-8 -I "index.html" -P "*.html" -o ./index.html | sed -e '/<hr>/,+7d' > ./index.html
+          tree -H '.' -L 3 -r --noreport --charset utf-8 -I "index.html" -P "*.html" -o ./index.html | sed -e '/<hr>/,+7d' > ./index.html
 
           git config --global user.name 'GH workflow'
           git config --global user.email ''
