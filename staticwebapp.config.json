@@ -1,0 +1,9 @@
+{
+    "routes": [
+      {
+        "route": "/*",
+        "redirect": "/.auth/login/github",
+        "allowedRoles": ["authenticated"]
+      }
+    ]
+  }
