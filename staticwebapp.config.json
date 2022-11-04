@@ -3,10 +3,6 @@
     {
       "route": "/*",
       "rewrite": "/.auth/login/aad"
-    },
-    {
-      "route": "/logout",
-      "redirect": "/.auth/logout"
     }
   ],
   "responseOverrides": {
